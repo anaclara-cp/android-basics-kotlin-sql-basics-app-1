@@ -34,17 +34,6 @@ class MainActivity : AppCompatActivity() {
         val clienteDao = db.clienteDao()
 
 
-//        lifecycleScope.launch {
-//            // Consulta para confirmar a inserção dos 10 registros
-//            val clientes = clienteDao.listarTodos()
-//
-//            Log.d("BD_TESTE", "Total de clientes no banco: ${clientes.size}")
-//            clientes.forEach { cliente ->
-//                Log.d(
-//                    "BD_TESTE",
-//                    "ID: ${cliente.id} | Nome: ${cliente.nome} | Email: ${cliente.email}"
-//                )
-//            }
-//        }
     }
 }
+

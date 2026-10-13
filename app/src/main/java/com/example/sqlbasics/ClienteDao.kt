@@ -39,7 +39,7 @@ interface ClienteDao {
     suspend fun listarTodos(): List<Cliente>
 
     @Query("SELECT * FROM clientes WHERE id = :id LIMIT 1")
-    suspend fun buscarPorId(id: Long): Cliente?
+    suspend fun buscarPorId(id: Long): Cliente
 
     @Query("SELECT * FROM clientes WHERE email = :email LIMIT 1")
     suspend fun buscarPorEmail(email: String): Cliente?
