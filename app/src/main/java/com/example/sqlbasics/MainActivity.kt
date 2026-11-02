@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarViews() {
-        etNome = findViewById(R.id.etNome)
+        etNome = findViewById(R.id.etTelefone)
         etTelefone = findViewById(R.id.etTelefone)
         etEmail = findViewById(R.id.etEmail)
         etSenha = findViewById(R.id.etSenha)
         btnSalvar = findViewById(R.id.btnSalvar)
-        btnLimpar = findViewById(R.id.btnLimpar)
+
         lvClientes = findViewById(R.id.lvClientes)
     }
 
@@ -58,10 +58,10 @@ class MainActivity : AppCompatActivity() {
         lvClientes.adapter = adapter
 
         // Clique simples -> Preenche o formulário para EDITAR (Update)
-        lvClientes.setOnItemClickListener { _, _, position, _ ->
-            val cliente = listaClientes[position]
-            preencherCamposParaEdicao(cliente)
-        }
+
+
+
+
 
         // Clique longo -> Exibe confirmação para EXCLUIR (Delete)
         lvClientes.setOnItemLongClickListener { _, _, position, _ ->
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configurarBotoes() {
         btnSalvar.setOnClickListener { salvarOuAtualizar() }
-        btnLimpar.setOnClickListener { limparFormulario() }
+
     }
 
     // READ: Carrega todos os registros do SQLite e joga na ListView
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
             // Transforma a lista de objetos em Strings legíveis para os alunos
             val dadosFormatados = listaClientes.map { cliente ->
-                "${cliente.id} - ${cliente.nome} | ${cliente.email}"
+                "${cliente.id} - ${cliente.nome} | ${cliente.id}"
             }
 
             adapter.clear()
