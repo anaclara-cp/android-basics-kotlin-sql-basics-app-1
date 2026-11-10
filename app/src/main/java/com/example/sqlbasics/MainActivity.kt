@@ -1,6 +1,7 @@
 package com.example.sqlbasics
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -43,25 +44,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarViews() {
-        etNome = findViewById(R.id.etTelefone)
+        etNome = findViewById(R.id.etNome)
         etTelefone = findViewById(R.id.etTelefone)
         etEmail = findViewById(R.id.etEmail)
         etSenha = findViewById(R.id.etSenha)
         btnSalvar = findViewById(R.id.btnSalvar)
-
+        btnLimpar = findViewById(R.id.btnLimpar) // Mudei
         lvClientes = findViewById(R.id.lvClientes)
     }
 
     private fun configurarListView() {
-        // Usa o layout de item nativo do próprio Android (android.R.layout.simple_list_item_1)
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList())
         lvClientes.adapter = adapter
 
         // Clique simples -> Preenche o formulário para EDITAR (Update)
-
-
-
-
+       lvClientes.setOnItemClickListener {_, _, position, _ ->
+           val cliente = listaClientes[position]
+           preencherCamposParaEdicao(cliente)
+           true
+       }
 
         // Clique longo -> Exibe confirmação para EXCLUIR (Delete)
         lvClientes.setOnItemLongClickListener { _, _, position, _ ->
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configurarBotoes() {
         btnSalvar.setOnClickListener { salvarOuAtualizar() }
-
+        btnLimpar.setOnClickListener { limparFormulario()}
     }
 
     // READ: Carrega todos os registros do SQLite e joga na ListView
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
             // Transforma a lista de objetos em Strings legíveis para os alunos
             val dadosFormatados = listaClientes.map { cliente ->
-                "${cliente.id} - ${cliente.nome} | ${cliente.id}"
+                "${cliente.id} - ${cliente.nome} | ${cliente.email}"
             }
 
             adapter.clear()
@@ -156,6 +157,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun preencherCamposParaEdicao(cliente: Cliente) {
         clienteEmEdicao = cliente
+
         etNome.setText(cliente.nome)
         etTelefone.setText(cliente.telefone)
         etEmail.setText(cliente.email)
