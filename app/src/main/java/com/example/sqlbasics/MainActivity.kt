@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
+// ANA CLARA DE CARVALHO
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
